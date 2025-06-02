@@ -1,15 +1,11 @@
 // import Ingredient from "./Ingredient";
 import {useState} from "react";
-
+// Continue from 6:14:00
 function Main(){
     
-    const ingredients = [
-        "oregano",
-        "basil",
-        "parsley",
-        "thyme",
-        "cilantro"
-    ]
+    const [ingredients,setIngredients] = useState([
+       
+    ])
     const ingredientsListItems = ingredients.map(ingredient => (
         <li key={ingredient}>{ingredient}</li>
     ) )
@@ -24,7 +20,7 @@ function Main(){
         //grabbing a particular field from the form data
 
         const newIngredient = formData .get("ingredient")
-
+        setIngredients(prevIngredients=>[...prevIngredients,newIngredient])
         //console.log(newIngredient)
         
         //console.log(ingredients)

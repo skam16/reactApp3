@@ -11,22 +11,27 @@ function Main(){
     ) )
 
         // return<Ingredient ingredient={item}/>
-   
-    function handleSubmit(event){
-        //prevents refreshing the page
-        event.preventDefault();
-        //grabbing form data
-        const formData = new FormData(event.currentTarget)
-        //grabbing a particular field from the form data
+   //using handleSubmit
+        // function handleSubmit(event){
+        //     //prevents refreshing the page
+        //     event.preventDefault();
+        //     //grabbing form data
+        //     const formData = new FormData(event.currentTarget)
+        //     //grabbing a particular field from the form data
 
-        const newIngredient = formData .get("ingredient")
-        setIngredients(prevIngredients=>[...prevIngredients,newIngredient])
-        //console.log(newIngredient)
-        
-        //console.log(ingredients)
-        //console.log("Form submitted!");
-    }
+        //     const newIngredient = formData .get("ingredient")
+        //     setIngredients(prevIngredients=>[...prevIngredients,newIngredient])
+        //     //console.log(newIngredient)
+            
+        //     //console.log(ingredients)
+        //     //console.log("Form submitted!");
+        // }
 
+
+function addIngredient(formData){
+    const newIngredient = formData.get("ingredient")
+    setIngredients(prevIngredients => [...prevIngredients, newIngredient])
+}
 
     //{ *****counter practice*****
     // const [count, setCount] = useState(0);
@@ -48,7 +53,7 @@ function Main(){
 
     return(
     <main>
-    <form onSubmit={handleSubmit} className="add-ingredients">
+    <form action={addIngredient} className="add-ingredients">
         <input 
         type="text"
         name="ingredient"

@@ -1,11 +1,14 @@
 // import Ingredient from "./Ingredient";
 import {useState} from "react";
-// Continue from 6:14:00
+// Continue from 8:02
 function Main(){
     
     const [ingredients,setIngredients] = useState([
        
     ])
+
+    const [recipe,setRecipe] =  useState(false)
+
     const ingredientsListItems = ingredients.map(ingredient => (
         <li key={ingredient}>{ingredient}</li>
     ) )
@@ -50,6 +53,9 @@ function addIngredient(formData){
     // }
     //******Counter Practice Ends*****/}
 
+    function getRecipe(){
+        setRecipe(prevState = !prevState)
+    }
 
     return(
     <main>
@@ -61,10 +67,24 @@ function addIngredient(formData){
         aria-label="Add ingredient"/>
         <button >Add ingredient</button>
     </form>
-    <ul>
-        {ingredientsListItems}
-    </ul>
 
+
+   {ingredients.length>0 ? <section>
+        <h2>Ingredients on hand:</h2>
+        <ul className ="ingredients-list" aria-live="polite">{ingredientsListItems}</ul>
+        {ingredients.length>3?<div className="get-recipe-container">
+                <div>
+                    <h3>Ready for a recipe?</h3>
+                    <p>Generate a recipe from your list of ingredients.</p>
+                </div>
+                <button onClick={getRecipe}>Get a recipe</button>
+
+        </div>:"Add more ingredients to get a recipe!"}
+   </section>:""}
+   {recipe? <section className="recipeData">
+    <p>Some data from API</p>
+   </section>:""
+}
     {/* <div className="counter">
         <button className="minus" onClick={subtract}>-</button>
         <h2 className="count">{count}</h2>
@@ -74,5 +94,4 @@ function addIngredient(formData){
     
     </main>)
 }
-
 export default Main;
